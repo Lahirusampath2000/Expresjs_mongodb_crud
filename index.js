@@ -1,4 +1,6 @@
 const express = require('express')
+const mongoose = require('mongoose');
+
 const app = express()
 
 app.listen(3000, () => {
@@ -6,5 +8,5 @@ app.listen(3000, () => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Hello Worhld!');
+  res.send('Hello Worhhjmld!');
 });
