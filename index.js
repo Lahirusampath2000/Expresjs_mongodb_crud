@@ -39,6 +39,23 @@ qpp.get('/api/products/:id', async(req, res) => {
   }
 });
 
+//api for update
+
+app.put('/api/products/:id', async(req, res) => {
+  try {
+    const { id } = req.params;
+    const product=await Product.findByIdAndUpdate(id, req.body);
+
+    if(!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    const updatedProduct = await Product.findById(id);
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 mongoose.connect("mongodb+srv://admin:admin@cruddb.bbhdm.mongodb.net/Node-Crud?retryWrites=true&w=majority&appName=cruddb")
  .then(() => {
    console.log('Connected to MongoDB');
