@@ -30,6 +30,15 @@ app.get('/api/products', async(req, res) => {
   }
 });
 
+qpp.get('/api/products/:id', async(req, res) => {
+  try {
+    const { id } = req.params;
+    const product=await Product.findById(id);
+  } catch (error) {
+    req.status(500).json({ error: error.message });
+  }
+});
+
 mongoose.connect("mongodb+srv://admin:admin@cruddb.bbhdm.mongodb.net/Node-Crud?retryWrites=true&w=majority&appName=cruddb")
  .then(() => {
    console.log('Connected to MongoDB');
